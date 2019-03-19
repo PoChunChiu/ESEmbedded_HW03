@@ -53,7 +53,11 @@ This is the hw03 sample. Please follow the steps below.
 
 --------------------
 
-1.實驗目的
-	
+#1.實驗目的
+	了解調用約定與AAPCS
+#2.實驗步驟
+	1.首先，新增一函式 _int func1(int a,int b)_，並執行觀察變化
+	2.執行 _make qemu_
+#3.
 	
 	
