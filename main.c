@@ -10,10 +10,8 @@ void reset_handler(void)
 	;
 }
 int func0(){
-	
 	func1(3,4);
 	return 16;
-	
 }
 int func1(int a,int b){
 	return a+b;
