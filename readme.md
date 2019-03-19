@@ -114,6 +114,5 @@ This is the hw03 sample. Please follow the steps below.
 
 ![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/bl.JPG)
 
-#3.結果與結論
 	
 	
