@@ -61,32 +61,44 @@ This is the hw03 sample. Please follow the steps below.
 
   #實驗一
 
-	1. 首先，新增一函式  _int func0()_ ，並呼叫 _func0(1,2) _ 執行 _make qemu_ ， 開始觀察。
+1. 首先，新增一函式  _int func0()_ ，並呼叫 _func0(1,2) _ 執行 _make qemu_ ， 開始觀察。
 
-	
-	2. 可以看到除了r3位置首先出現我們給予的值 "16"，推斷其為 _func0_ 中承接16之位置。
+2. 可以看到除了r3位置首先出現我們給予的值 "16"，推斷其為 _func0_ 中承接16之位置。
 
 ![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/r3.JPG)
 
-	3. 隨後看到除了r0位置出現我們給予的值 "16"，推斷其為 _func0_ return 16後承接之位置。
+3. 隨後看到除了r0位置出現我們給予的值 "16"，推斷其為 _func0_ return 16後承接之位置。
 
 ![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/r0.JPG)
+   
+且並未觀察將 _r0~r3_ 等以str之指令存入r7之中:
 
-	4. 另外繼續執行程式多次，可看到程式於 _0xc_ 與 _0x10_ 之間執行，可推斷其為 _while(1)_ 造成之現象。
+![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/nostr.JPG)
 
-	5. 根據AAPCS， _r0~r3_ 在引數傳遞中會被優先使用，在這邊也可以觀察到。
+4. 另外繼續執行程式多次，可看到程式於 _0xc_ 與 _0x10_ 之間執行，可推斷其為 _while(1)_ 造成之現象。
+
+5. 根據AAPCS， _r0~r3_ 在引數傳遞中會被優先使用，在這邊也可以觀察到。
 
   #實驗二
 
-	1.除實驗一原有 _func0_ 之外，新增一函式  _int func1(int a,int b)_ ，並給予2輸入 _func(1,2) _ 執行 _make qemu_ ， 開始觀察。
+1.除實驗一原有 _func0_ 之外，新增一函式  _int func1(int a,int b)_ ，並給予2輸入 _func(1,2) _ 執行 _make qemu_ ， 開始觀察。
+
+![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/org_func.JPG)
 	
-	2.可以看到在 _func1_ 的執行過程中，兩個輸入正數 _int a, int b_ 其值分別為1與2被賦予於 _r0,r1_ ，並會將以 _str_ 存入以 _r7_ 後#4與#0之位置。在 _return a+b_ 時再提取至 _r2_ 與 _r3_ 進行 _add_ 。 
+2.可以看到在 _func1_ 的執行過程中，兩個輸入正數 _int a, int b_ 其值分別為1與2被賦予於 _r0,r1_ ，並會將以 _str_ 存入以 _r7_ 後#4與#0之位置。在 _return a+b_ 時再提取至 _r2_ 與 _r3_ 進行 _add_ 。 
 
 ![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/offset.JPG)
 
   #實驗三
   
-	1. 將 *實驗二* 之 _func1_ 移至 _func0_ 中
+1. 將 *實驗二* 之 _func1_ 移至 _func0_ 中，如:
+
+![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/new_func.JPG)
+
+2. 可觀察到函式互相呼叫時，會以 _bl_ 至指定函式，重複前2次實驗之步驟執行程式。
+
+![image](https://github.com/PoChunChiu/ESEmbedded_HW03/blob/master/img/bl.JPG)
+
 #3.結果與結論
 	
 	
